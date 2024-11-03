@@ -32,11 +32,11 @@ app.use('/api/jobs', jobRouter);
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
     // Adjusted path to correctly point to `client/dist`
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+    app.use(express.static(path.join(__dirname, './client/src')));
 
     // Fallback route for Single Page Application
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+        res.sendFile(path.join(__dirname, './client/src', 'index.html'));
     });
 }
 // Start server and connect to DB

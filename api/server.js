@@ -20,23 +20,20 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-const __dirname = path.resolve();
-
-
 // API routes
 app.use('/api/users', userRouter);
 app.use('/api/jobs', jobRouter);
 
-
-
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '/client/dist')));
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
     });
 }
+
 // Start server and connect to DB
 connectDB()
     .then(() => {
@@ -49,8 +46,8 @@ connectDB()
         process.exit(1);
     });
 
-// Error-handling middleware should be placed after routes
+// Error-handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack); // Log the stack trace for debugging
-    res.status(500).send('Something broke!'); // Send a generic error response
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
 });

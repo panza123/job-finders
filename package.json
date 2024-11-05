@@ -1,11 +1,11 @@
 {
   "name": "jobportal",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "api/server.js",
   "type": "module",
   "scripts": {
-   "dev": "nodemon api/server.js",
-    "build": "npm install && npm install --prefix client && npm run build --prefix client",
+    "dev": "nodemon api/server.js",
+    "build": "npm install && npm run build --prefix client",
     "start": "node api/server.js"
   },
   "keywords": ["job", "portal", "express", "node"],

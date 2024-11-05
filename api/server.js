@@ -27,11 +27,10 @@ app.use('/api/jobs', jobRouter);
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();
-    app.use(express.static(path.join(__dirname, '/client/dist')));
+    app.use(express.static(path.join(__dirname, "/client/dist")));
 
-    app.get('*', (req, res) => {
-        console.log(`Request for ${req.originalUrl}`);
-        res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
     });
 }
 
